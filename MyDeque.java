@@ -1,6 +1,6 @@
 public class MyDeque<E> {
-    public E[] data;
-    public int size, start, end;
+    private E[] data;
+    private int size, start, end;
 
     public MyDeque() {
         data = (E[]) new Object[10];
