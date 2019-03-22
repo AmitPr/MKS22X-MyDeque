@@ -17,32 +17,39 @@ public class MyDeque<E> {
     }
 
     public int size() {
-        return size;
+        int s = 0;
+        if(end < start){
+            s += (size-start);
+            s+= end;
+        }else{
+            s=end-start;
+        }
+        return s;
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("[");
+        StringBuilder sb = new StringBuilder("{");
         if (end > start) {
             for (int i = start; i < end; i++) {
                 if (data[i] != null)
-                    sb.append(data[i].toString() + ", ");
+                    sb.append(data[i].toString() + " ");
             }
         } else {
             for (int i = start; i < size; i++) {
                 if (data[i] != null)
-                    sb.append(data[i].toString() + ", ");
+                    sb.append(data[i].toString() + " ");
             }
             for (int i = 0; i < end; i++) {
                 if (data[i] != null)
-                    sb.append(data[i].toString() + ", ");
+                    sb.append(data[i].toString() + " ");
             }
         }
         if(sb.length() > 2)
-            sb.delete(sb.length() - 2, sb.length());
-        sb.append("]");
+            sb.delete(sb.length() - 1, sb.length());
+        sb.append("}");
         return sb.toString();
     }
-
+    @SuppressWarnings("unchecked")
     private void resize() {
         int newLength = data.length * 2;
         E[] temp = (E[]) new Object[newLength];
@@ -130,8 +137,9 @@ public class MyDeque<E> {
         } else {
             if(start==data.length-1){
                 start=0;
-            }
+            }else{
             start++;
+            }
         }
         return element;
     }
