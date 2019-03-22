@@ -1,13 +1,15 @@
+import java.util.NoSuchElementException;
+
 public class MyDeque<E> {
     private E[] data;
     private int size, start, end;
-
+    @SuppressWarnings("unchecked")
     public MyDeque() {
         data = (E[]) new Object[10];
         size = 10;
         start = end = 0;
     }
-
+    @SuppressWarnings("unchecked")
     public MyDeque(int initialCapacity) {
         data = (E[]) new Object[initialCapacity];
         size = initialCapacity;
@@ -71,6 +73,9 @@ public class MyDeque<E> {
     }
 
     public void addFirst(E element) {
+        if(element==null){
+            throw new NullPointerException();
+        }
         if (start == 0) {
             if (end == data.length - 1) {
                 resize();
@@ -89,6 +94,9 @@ public class MyDeque<E> {
     }
 
     public void addLast(E element) {
+        if(element==null){
+            throw new NullPointerException();
+        }
         if (end < start) {
             data[end] = element;
             end++;
@@ -112,6 +120,9 @@ public class MyDeque<E> {
     }
 
     public E removeFirst() {
+        if(end==start){
+            throw new NoSuchElementException();
+        }
         E element = data[start];
         data[start] = null;
         if (start <= end) {
@@ -120,11 +131,15 @@ public class MyDeque<E> {
             if(start==data.length-1){
                 start=0;
             }
+            start++;
         }
         return element;
     }
 
     public E removeLast() {
+        if(end==start){
+            throw new NoSuchElementException();
+        }
         if (end > start) {
             end--;
         } else {
@@ -140,10 +155,16 @@ public class MyDeque<E> {
     }
 
     public E getFirst() {
+        if(end==start){
+            throw new NoSuchElementException();
+        }
         return data[start];
     }
 
     public E getLast() {
+        if(end==start){
+            throw new NoSuchElementException();
+        }
         if(end == 0){
             return data[data.length-1];
         }
