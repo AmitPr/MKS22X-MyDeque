@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class MyDeque<E> {
@@ -113,12 +114,13 @@ public class MyDeque<E> {
         } else {
             if (end == data.length - 1) {
                 if (start > 0) {
+                    data[end] = element;
                     end = 0;
                 } else {
                     resize();
+                    data[end] = element;
+                    end++;
                 }
-                data[end] = element;
-                end++;
             } else {
                 data[end] = element;
                 end++;
@@ -177,5 +179,9 @@ public class MyDeque<E> {
             return data[data.length-1];
         }
         return data[end-1];
+    }
+
+    public String printStartEnd(){
+        return start + ", " + end + ", " + Arrays.toString(data);
     }
 }
