@@ -1,15 +1,16 @@
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class MyDeque<E> {
     private E[] data;
     private int size, start, end;
+
     @SuppressWarnings("unchecked")
     public MyDeque() {
         data = (E[]) new Object[10];
         size = 10;
         start = end = 0;
     }
+
     @SuppressWarnings("unchecked")
     public MyDeque(int initialCapacity) {
         data = (E[]) new Object[initialCapacity];
@@ -19,11 +20,11 @@ public class MyDeque<E> {
 
     public int size() {
         int s = 0;
-        if(end < start){
-            s += (size-start);
-            s+= end;
-        }else{
-            s=end-start;
+        if (end < start) {
+            s += (size - start);
+            s += end;
+        } else {
+            s = end - start;
         }
         return s;
     }
@@ -48,6 +49,7 @@ public class MyDeque<E> {
         sb.append("}");
         return sb.toString();
     }
+
     @SuppressWarnings("unchecked")
     private void resize() {
         int newLength = data.length * 2;
@@ -73,13 +75,13 @@ public class MyDeque<E> {
             max = index;
         }
         start = 0;
-        size=newLength;
+        size = newLength;
         end = max;
         data = temp;
     }
 
     public void addFirst(E element) {
-        if(element==null){
+        if (element == null) {
             throw new NullPointerException();
         }
         if (start == 0) {
@@ -100,7 +102,7 @@ public class MyDeque<E> {
     }
 
     public void addLast(E element) {
-        if(element==null){
+        if (element == null) {
             throw new NullPointerException();
         }
         if (end < start) {
@@ -108,7 +110,7 @@ public class MyDeque<E> {
             end++;
             if (end + 1 == start) {
                 resize();
-            } 
+            }
         } else {
             if (end == data.length - 1) {
                 if (start > 0) {
@@ -127,7 +129,7 @@ public class MyDeque<E> {
     }
 
     public E removeFirst() {
-        if(end==start){
+        if (end == start) {
             throw new NoSuchElementException();
         }
         E element = data[start];
@@ -135,17 +137,17 @@ public class MyDeque<E> {
         if (start <= end) {
             start++;
         } else {
-            if(start==data.length-1){
-                start=0;
-            }else{
-            start++;
+            if (start == data.length - 1) {
+                start = 0;
+            } else {
+                start++;
             }
         }
         return element;
     }
 
     public E removeLast() {
-        if(end==start){
+        if (end == start) {
             throw new NoSuchElementException();
         }
         if (end > start) {
@@ -163,19 +165,19 @@ public class MyDeque<E> {
     }
 
     public E getFirst() {
-        if(end==start){
+        if (end == start) {
             throw new NoSuchElementException();
         }
         return data[start];
     }
 
     public E getLast() {
-        if(end==start){
+        if (end == start) {
             throw new NoSuchElementException();
         }
-        if(end == 0){
-            return data[data.length-1];
+        if (end == 0) {
+            return data[data.length - 1];
         }
-        return data[end-1];
+        return data[end - 1];
     }
 }

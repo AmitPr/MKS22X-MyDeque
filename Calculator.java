@@ -17,6 +17,8 @@ public class Calculator {
                     md.addFirst(arg1*arg2);
                 }else if(token.equalsIgnoreCase("/")){
                     md.addFirst(arg1/arg2);
+                }else if(token.equalsIgnoreCase("%")){
+                    md.addFirst(arg1%arg2);
                 }
             }
         }
