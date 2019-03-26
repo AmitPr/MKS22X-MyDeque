@@ -45,8 +45,6 @@ public class MyDeque<E> {
                     sb.append(data[i].toString() + " ");
             }
         }
-        if(sb.length() > 2)
-            sb.delete(sb.length() - 1, sb.length());
         sb.append("}");
         return sb.toString();
     }
@@ -179,9 +177,5 @@ public class MyDeque<E> {
             return data[data.length-1];
         }
         return data[end-1];
-    }
-
-    public String printStartEnd(){
-        return start + ", " + end + ", " + Arrays.toString(data);
     }
 }
